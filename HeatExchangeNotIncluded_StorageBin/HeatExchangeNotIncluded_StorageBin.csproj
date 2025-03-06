@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="InsulateStorageBin.cs" />
     <Compile Include="InsulateStorageBinConfig.cs" />
-    <Compile Include="InsulateStorageBinPatch.cs" />
+    <Compile Include="InsulateStorageBinMod_Patch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,32 +4,34 @@ using UnityEngine;
 
 namespace HeatExchangeNotIncluded_StorageBin
 {
-    public class InsulateStorageConfig : IBuildingConfig
+    public class InsulateStorageBinConfig : IBuildingConfig
     {
         public const string ID = "InsulateStorageBin";
-
+        public const string DISPLAYNAME = "Insulate Storage Bin";
+        public const string DESCRIPTION = "A storage bin that insulate the stored items";
+        public const string EFFECT = "A storage bin that stored items will not exchange heat with the environment";
         public const string ANIM_NAME = "storagelocker_kanim";
+        public const string DeconstructButtonText = "Deconstruct";
+        public const string DeconstructButtonTooltip = "Deconstruct this storage bin and drop all items here";
 
-        private static float CAPACITY = 100000f;
-
+        private static float CAPACITY = 200000f;
         private static int HEIGHT = 2;
-
         private static int WIDTH = 1;
-
         private static readonly List<Storage.StoredItemModifier> StoredItemModifiers = new List<Storage.StoredItemModifier> {
-            Storage.StoredItemModifier.Insulate
+            Storage.StoredItemModifier.Insulate,
+            //Storage.StoredItemModifier.Seal,
+            Storage.StoredItemModifier.Hide
         };
 
         public override BuildingDef CreateBuildingDef()
         {
-            // Create a building definition similar to the standard storage building.
-            string[] construction_materials = new string[2] { "RefinedMetal", "Insulite" };
-            float[] construction_mass = new float[2] { BUILDINGS.CONSTRUCTION_MASS_KG.TIER2[0], BUILDINGS.CONSTRUCTION_MASS_KG.TIER3[0] };
+            string[] construction_materials = new string[2] { "RefinedMetal", SimHashes.SuperInsulator.ToString() };
+            float[] construction_mass = new float[2] { BUILDINGS.CONSTRUCTION_MASS_KG.TIER4[0], BUILDINGS.CONSTRUCTION_MASS_KG.TIER3[0] };
             BuildingDef obj = BuildingTemplates.CreateBuildingDef(
                 id: ID,
                 width: WIDTH,
                 height: HEIGHT,
-                anim: "storagelocker_kanim",
+                anim: ANIM_NAME,
                 hitpoints: 30,
                 construction_time: 60f,
                 construction_mass: construction_mass,
@@ -68,7 +70,6 @@ namespace HeatExchangeNotIncluded_StorageBin
 
             go.AddOrGet<CopyBuildingSettings>().copyGroupTag = GameTags.StorageLocker;
             go.AddOrGet<StorageLocker>();
-            go.AddOrGet<TileTemperature>();
             go.AddOrGet<BuildingHP>().destroyOnDamaged = true;
             go.AddOrGetDef<RocketUsageRestriction.Def>().restrictOperational = false;
         }

@@ -6,7 +6,7 @@ using STRINGS;
 
 namespace HeatExchangeNotIncluded_StorageBin
 {
-    public class InsulateStorageBin : KMonoBehaviour, ISingleSliderControl //, IUserControlledCapacity
+    public class InsulateStorageBin : KMonoBehaviour
     {
         [MyCmpGet]
         private Storage storage;
@@ -16,19 +16,15 @@ namespace HeatExchangeNotIncluded_StorageBin
 
         [Serialize]
         private float userMaxCapacity = float.PositiveInfinity;
-        private Tag[] forbidden_tags;
 
-        public float totalMaxCapacity;
-        //create new float for total max capacity and now using public capacitykg in Storage to hold user capacity which used to be the max
-        //this is a clumsy workaround to use a custom slider to hold user capacity, rather than default iusercontrolledcapacity which is null
-        //all because I can't get IUserControlledCapacity to allow decimal values, and I know you nerds are gonna wanna store 35g or something
+        private Tag[] forbidden_tags;
 
         public string SliderTitleKey => "Maximum Capacity";
 
         public string SliderUnits => GameUtil.GetCurrentMassUnit();
         public float GetSliderMax(int index)
         {
-            return totalMaxCapacity;
+            return 200000f;
         }
 
         public float GetSliderMin(int index)
@@ -63,10 +59,6 @@ namespace HeatExchangeNotIncluded_StorageBin
                 userMaxCapacity = value; //set both local and Storage variable, local variable gets kept on save/load
                 filteredStorage.FilterChanged();
             }
-        }
-        public int SliderDecimalPlaces(int index)
-        {
-            return 3; //UI limitations make less than 1g a pain to implement
         }
 
         public float AmountStored => storage.MassStored();
@@ -110,13 +102,6 @@ namespace HeatExchangeNotIncluded_StorageBin
         protected override void OnSpawn()
         {
             base.OnSpawn();
-
-            if (userMaxCapacity >= totalMaxCapacity)
-            {
-                userMaxCapacity = totalMaxCapacity;
-            }
-            storage.capacityKg = userMaxCapacity; //set this up since capacitykg isn't serialized, I'm sure there is an easier way but whatever
-                                                  //must read serialized variables during onspawn, not initialize, I guess they are not unserialized until now.
 
             forbidden_tags = (allowManualPumpingStationFetching ? new Tag[0] : new Tag[1] { GameTags.LiquidSource });
             filteredStorage.SetForbiddenTags(forbidden_tags);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
@@ -25,7 +26,7 @@ namespace HeatExchangeNotIncluded_StorageBin
 
         public override BuildingDef CreateBuildingDef()
         {
-            string[] construction_materials = new string[2] { "RefinedMetal", SimHashes.SuperInsulator.ToString() };
+            string[] construction_materials = new string[2] { "RefinedMetal", "SUPERINSULATOR" };
             float[] construction_mass = new float[2] { BUILDINGS.CONSTRUCTION_MASS_KG.TIER4[0], BUILDINGS.CONSTRUCTION_MASS_KG.TIER3[0] };
             BuildingDef obj = BuildingTemplates.CreateBuildingDef(
                 id: ID,

@@ -17,29 +17,9 @@ namespace HeatExchangeNotIncluded_StorageBin
                 // Add insulate storage bin to build menu
                 public static void Prefix()
                 {
+                    Utils.AddInsuliteStrings();
                     Utils.AddBuildingStrings(InsulateStorageBinConfig.ID, InsulateStorageBinConfig.DISPLAYNAME, InsulateStorageBinConfig.DESCRIPTION, InsulateStorageBinConfig.EFFECT);
                     Utils.AddPlan("Base", "storage", InsulateStorageBinConfig.ID, "StorageLocker");
-                }
-            }
-
-
-            [HarmonyPatch(typeof(ResourceRemainingDisplayScreen))]
-            [HarmonyPatch(nameof(ResourceRemainingDisplayScreen.GetString))]
-            public static class ResourceRemainingDisplayScreen_Patch
-            {
-                //this clumsy patch overrites the 'sandstone 500/1kg' on the hover text card when building hauling points.
-                //checks the buildingdef in the hovercard, since it's public, rather than buildtool itself
-                //also checks to make sure that it's exactly 1kg mass - draggable items (wires, pipes etc) otherwise cause errors since they use a drag tool not build tool
-                public static string Postfix(string __result, Recipe ___currentRecipe)
-                {
-                    if (___currentRecipe.Ingredients[0].amount == 1f)
-                    {
-                        if (BuildTool.Instance.GetComponent<BuildToolHoverTextCard>().currentDef.name == "HaulingPoint")
-                        {
-                            __result = "No resources required";
-                        }
-                    }
-                    return __result;
                 }
             }
         }
@@ -48,6 +28,10 @@ namespace HeatExchangeNotIncluded_StorageBin
 
     public static class Utils
     {
+        public static void AddInsuliteStrings()
+        {
+            Strings.Add("STRINGS.MISC.TAGS.SUPERINSULATOR", "Insulite");
+        }
         public static void AddBuildingStrings(string buildingId, string name, string description, string effect)
         {
             Strings.Add($"STRINGS.BUILDINGS.PREFABS.{buildingId.ToUpperInvariant()}.NAME", UI.FormatAsLink(name, buildingId));

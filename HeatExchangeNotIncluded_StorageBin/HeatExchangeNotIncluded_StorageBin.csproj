@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\NuGetPackages\ILRepack.2.0.40\build\ILRepack.props" Condition="Exists('..\NuGetPackages\ILRepack.2.0.40\build\ILRepack.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,6 +43,12 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\..\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\NuGetPackages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PLib, Version=4.17.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\NuGetPackages\PLib.4.17.1\lib\net471\PLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,10 +68,24 @@
     <Compile Include="InsulateStorageBin.cs" />
     <Compile Include="InsulateStorageBinConfig.cs" />
     <Compile Include="InsulateStorageBinMod_Patch.cs" />
+    <Compile Include="OptionConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\NuGetPackages\ILRepack.2.0.40\build\ILRepack.props')" Text="$([System.String]::Format('$(ErrorText)', '..\NuGetPackages\ILRepack.2.0.40\build\ILRepack.props'))" />
+    <Error Condition="!Exists('..\NuGetPackages\ILRepack.Lib.MSBuild.Task.2.0.26\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\NuGetPackages\ILRepack.Lib.MSBuild.Task.2.0.26\build\ILRepack.Lib.MSBuild.Task.targets'))" />
+  </Target>
+  <Import Project="..\NuGetPackages\ILRepack.Lib.MSBuild.Task.2.0.26\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('..\NuGetPackages\ILRepack.Lib.MSBuild.Task.2.0.26\build\ILRepack.Lib.MSBuild.Task.targets')" />
+  <!-- Merge the Plib.dll into this mod's dll -->
+  <Target Name="AfterBuild">
+    <Exec Command="D:\GitHub\ModsNotIncluded\NuGetPackages\ILRepack.2.0.40\tools\ILRepack.exe /out:bin\Debug\HeatExchangeNotIncluded_StorageBin.dll /lib:bin\Debug /internalize /wildcards bin\Debug\HeatExchangeNotIncluded_StorageBin.dll bin\Debug\PLib.dll" />
+  </Target>
 </Project>

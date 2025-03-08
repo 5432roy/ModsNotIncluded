@@ -14,13 +14,17 @@ namespace HeatExchangeNotIncluded_StorageBin
         public const string DeconstructButtonText = "Deconstruct";
         public const string DeconstructButtonTooltip = "Deconstruct this storage bin and drop all items here";
 
-        private static float CAPACITY = 200000f;
-        private static int HEIGHT = 2;
-        private static int WIDTH = 1;
-        private static readonly List<Storage.StoredItemModifier> StoredItemModifiers = new List<Storage.StoredItemModifier> {
+        private static float MAXCAPACITY = InsulateStorageBinMod_Patch.Option.StorageCapacity * 1000f;
+        private static readonly int HEIGHT = 2;
+        private static readonly int WIDTH = 1;
+        private static readonly List<Storage.StoredItemModifier> StoredItemModifiersNotSealed = new List<Storage.StoredItemModifier> {
             Storage.StoredItemModifier.Insulate,
-            //Storage.StoredItemModifier.Seal,
             Storage.StoredItemModifier.Hide
+        };
+        private static readonly List<Storage.StoredItemModifier> StoredItemModifiersSealed = new List<Storage.StoredItemModifier> {
+            Storage.StoredItemModifier.Insulate,
+            Storage.StoredItemModifier.Hide,
+            Storage.StoredItemModifier.Seal
         };
 
         public override BuildingDef CreateBuildingDef()
@@ -34,8 +38,9 @@ namespace HeatExchangeNotIncluded_StorageBin
                 anim: ANIM_NAME,
                 hitpoints: 30,
                 construction_time: 60f,
-                construction_mass: construction_mass,
-                construction_materials: construction_materials,
+                // retrun type needs to be the same
+                construction_mass: InsulateStorageBinMod_Patch.Option.RequiredInsulie ? construction_mass : new float[1] { BUILDINGS.CONSTRUCTION_MASS_KG.TIER4[0] },
+                construction_materials: InsulateStorageBinMod_Patch.Option.RequiredInsulie ? construction_materials : new string[1] { "RefinedMetal" },
                 melting_point: 800f,
                 build_location_rule: BuildLocationRule.OnFloor,
                 decor: DECOR.PENALTY.TIER1,
@@ -58,8 +63,8 @@ namespace HeatExchangeNotIncluded_StorageBin
             BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
             Prioritizable.AddRef(go);
             Storage storage = go.AddOrGet<Storage>();
-            storage.SetDefaultStoredItemModifiers(StoredItemModifiers);
-            storage.capacityKg = CAPACITY;
+            storage.SetDefaultStoredItemModifiers(InsulateStorageBinMod_Patch.Option.Sealed ? StoredItemModifiersSealed : StoredItemModifiersNotSealed);
+            storage.capacityKg = MAXCAPACITY;
             storage.showInUI = true;
             storage.allowItemRemoval = true;
             storage.showDescriptor = true;

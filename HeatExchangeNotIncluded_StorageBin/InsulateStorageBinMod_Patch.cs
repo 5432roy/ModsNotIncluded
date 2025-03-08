@@ -2,12 +2,24 @@
 using HarmonyLib;
 using STRINGS;
 using KMod;
+using PeterHan.PLib.Core;
+using PeterHan.PLib.Options;
 
 
 namespace HeatExchangeNotIncluded_StorageBin
 {
     public class InsulateStorageBinMod_Patch : UserMod2
     {
+
+        public static OptionConfig Option { get; private set; }
+
+        public override void OnLoad(Harmony harmony)
+        {
+            base.OnLoad(harmony);
+            PUtil.InitLibrary();
+            new POptions().RegisterOptions(this, typeof(OptionConfig));
+            Option = POptions.ReadSettings<OptionConfig>() ?? new OptionConfig();
+        }
         public static class InsulateStorageBinPatch
         {
             [HarmonyPatch(typeof(GeneratedBuildings))]

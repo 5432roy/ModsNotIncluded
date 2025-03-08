@@ -1,0 +1,3 @@
+title: InsulateStorageBin
+description: A Storage that stored items will not exchange heat with the environment
+staticID: InsulateStorageBin

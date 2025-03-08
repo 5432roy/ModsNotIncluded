@@ -12,12 +12,17 @@ By isolating the thermal properties of stored items, the mod helps to improve th
 I set the building material to Insulite because it matches both the late game and the insulation concept for this building. 
 Might add a menu option for the mod to let uses choose if they want this kind of balance setting.
 
-
 ## Support
 
 Both *DLC* and *VANILLA*.
 
 Lastest Game Patch Tested: [Game Hotfix] - 652372
+
+## Libraries Used
+- [PLib](https://www.nuget.org/packages/PLib)
+- Newtonsoft.Json
+- ILRepack
+- Harmony
 
 ## Acknowledgements
 

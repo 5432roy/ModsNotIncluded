@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeatExchangeNotIncluded_Sto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptionMenu", "OptionMenu\OptionMenu.csproj", "{06DE4A3B-7C73-4174-AEE6-EA61E35D0205}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuitMechnisimFix", "SuitMechnisimFix\SuitMechnisimFix.csproj", "{4E2BBC75-023D-4C8C-8E5B-60829059C7C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoMoreSupplyErrand", "NoMoreSupplyErrand\NoMoreSupplyErrand.csproj", "{A1685ABC-3383-49F7-8933-6B13556D463D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{06DE4A3B-7C73-4174-AEE6-EA61E35D0205}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06DE4A3B-7C73-4174-AEE6-EA61E35D0205}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06DE4A3B-7C73-4174-AEE6-EA61E35D0205}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E2BBC75-023D-4C8C-8E5B-60829059C7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E2BBC75-023D-4C8C-8E5B-60829059C7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E2BBC75-023D-4C8C-8E5B-60829059C7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E2BBC75-023D-4C8C-8E5B-60829059C7C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1685ABC-3383-49F7-8933-6B13556D463D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1685ABC-3383-49F7-8933-6B13556D463D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1685ABC-3383-49F7-8933-6B13556D463D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1685ABC-3383-49F7-8933-6B13556D463D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

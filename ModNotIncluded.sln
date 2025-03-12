@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuitMechnisimFix", "SuitMec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoMoreSupplyErrand", "NoMoreSupplyErrand\NoMoreSupplyErrand.csproj", "{A1685ABC-3383-49F7-8933-6B13556D463D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidTeleporter", "SolidTeleporter\SolidTeleporter.csproj", "{5066D14D-53F0-48DE-8BA0-9CA6A2B5A1F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A1685ABC-3383-49F7-8933-6B13556D463D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1685ABC-3383-49F7-8933-6B13556D463D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1685ABC-3383-49F7-8933-6B13556D463D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5066D14D-53F0-48DE-8BA0-9CA6A2B5A1F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5066D14D-53F0-48DE-8BA0-9CA6A2B5A1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5066D14D-53F0-48DE-8BA0-9CA6A2B5A1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5066D14D-53F0-48DE-8BA0-9CA6A2B5A1F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

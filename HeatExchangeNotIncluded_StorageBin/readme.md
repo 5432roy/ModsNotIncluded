@@ -1,8 +1,10 @@
 # HeatExchangeNotIncluded_StorageBin
+<code><img width=20% alt="bin icon" src="Bin.png"></code>
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Steam Workshop](https://img.shields.io/badge/Steam-Workshop-blue)](https://steamcommunity.com/sharedfiles/filedetails/?id=3439686467)
 
 **Please let me know if you find any bugs or this makes your game crash**
-
-<code><img width=20% alt="bin icon" src="Bin.png"></code>
 
 ## Description
 

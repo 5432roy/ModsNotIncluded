@@ -10,7 +10,8 @@ This repository contains several mods, including:
 
 - **Insulate Storage Bin:**  
   A standout mod that prevents stored items from exchanging heat and emitting gas into the environment. This mod improves game performance—especially in late-game scenarios with countless objects—and offers customizable settings such as adjustable storage capacity and balanced construction costs.
-
+- **No More Supply Errands**
+  A mod that removes all errands from the game to fix the bad job scheduling design in the game. Improves the errands completion efficiency by reducing the duplicants travel time 
 - *(Additional mod projects can be listed here as they become available.)*
 
 ## Featured Mod: Insulate Storage Bin
